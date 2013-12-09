@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+	<script>
+	function getVidID(string){
+		var pattern = new RegExp("^(http|https):\/\/((youtu.be\/)|(www.youtube.com\/)(embed\/|watch(\\?)v=))", "g");
+		var result = string.match(pattern);
+		//alert(result);
+		alert(string.replace(result, ''));
+		return string.replace(result, '');
+	}
+	function getGraphical(){
+		var string = $('#url').val();
+		var pattern = new RegExp("^(http|https):\/\/((youtu.be\/)|(www.youtube.com\/)(embed\/|watch(\\?)v=))", "g");
+		var result = string.match(pattern);
+		//alert(result);
+		alert(string.replace(result, ''));
+		return string.replace(result, '');
+	}
+	</script>
+</head>
+<body>
+<h1>Regular Expressions</h1>
+<p>In this task, the objective was to create a regular expression that would match all of the following URLs excluding their unique youtube video id:
+<ul>
+<li>https://www.youtube.com/watch?v=HcqHtqvFUew – https</li>
+<li>http://www.youtube.com/watch?v=HcqHtqvFUew – http</li>
+<li>http://youtu.be/HcqHtqvFUew - short form</li>
+<li>http://www.youtube.com/embed/HcqHtqvFUew - embed form</li>
+</ul>
+This particular task was much simpler than the previous fibonacci task, as it simply involves pattern matching. Once the regex had been created, it was specified that just the video url should be returned.</p>
+<input id='url' type='text'>
+<button type='button' onclick='getGraphical()'>Submit</button>
+</body>
+</html>

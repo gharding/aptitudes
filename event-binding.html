@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+	<script>
+		$(function(){
+			$('a').click(function(e){
+				//alert("Clicked");
+				console.log($(this).attr('href'));
+				e.preventDefault();
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>Event Binding</h1>
+	<p>Event binding is a relatively simple process that causes a certain type of event (click, mouseover, mouseout, mousedown etc.) to run a certain set of instructions. This method of binding functions is also known as unobtrustive JavaScript, as the event call is not placed into the HTML tag. For example:</p>
+	<p>&#60;button onclick='doTheThing()'&#62;Do the thing&#60;/button&#62; - This is obtrusive, and simply adds the onclick function to this button.</p>
+	<p>&#60;button&#62;Do the thing&#60;/button&#62;</br>
+	&#60;script&#62;</br>
+	$(function(){</br>
+		$('button').click(function(){</br>
+			//do stuff</br>
+		});</br>
+	});</br>
+	&#60;/script&#62;</br>
+	The above code would bind the function to all button elements.
+
+	<p>Below are some hyperlinks. All of their links would return back to this exact page, if they were allowed to use their default action. When clicked, they will log their href to the console.</p>
+	<ul>
+		<li><a href='http://tinyurl.com/ob454zz'>Link 1</a></li>
+		<li><a href='http://sandbox.glennharding.co.uk/aptitude/event-binding.html'>Link 2</a></li>
+		<li><a href='http://glennharding.co.uk/sandbox/aptitude/event-binding.html'>Link 3</a></li>
+	</ul>
+</body>
+</html>

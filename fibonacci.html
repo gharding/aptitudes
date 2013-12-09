@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+		function getFibonacci(number){
+			var fibonacciArray = new Array(0, 1); //create an array to store fibonacci numbers in until we have the number we want.
+			var originalDesired = number; //get the number that the user has entered as their desired fibonacci number.
+			if(originalDesired==0){
+				alert("Unfortunately, there is no Fibonacci number 0, please try any number from 1");
+			}else{
+				var desired = originalDesired; 
+				desired--; //decrement the desired number once to account for the array which starts its indexing at 0.
+				if(desired==0){
+					var result = fibonacciArray[0];
+				}else if(desired==1){
+					var result = fibonacciArray[1];
+				}else{
+					while(fibonacciArray.length-1<originalDesired){
+						var i = fibonacciArray[fibonacciArray.length-2];
+						var j = fibonacciArray[fibonacciArray.length-1];
+						var nextFib = i+j;
+						fibonacciArray[fibonacciArray.length] = nextFib;
+						if(fibonacciArray.length-1==originalDesired){
+							var result = fibonacciArray[fibonacciArray.length-1];
+						}
+					}
+				}
+			}
+			$('#fibRes').html("<h2>Fibonacci Number "+originalDesired+" is "+result+"</h2>");
+			return result;
+		}
+	</script>
+</head>
+<body>
+	<h1>Fibonacci Sequence</h1>
+	<p>The Fibonacci sequence can be described as being a numeric sequence where any given number in that sequence is the sum of the previous two. For example, the 4th number in the Fibonacci sequence is 3 which is the sum of the 2nd and the 3rd (1 and 2). The fibernacci sequence always begins with 0 and 1. This is primarily to ensure that the sequence will actually get started.</p>
+	<p>To create a function which would be able to return the nth Fibonacci number, we would have to understand the concept of recursion, which involves a function making a call to itself until a condition is met. This means then, that we will have to create a recursive function which will take the input from the user and will then make recursive calls to the same piece of code until we have to correct number.</p>
+
+	<h2>Working Demonstration</h2>
+	<b>Fibbonacci to find</b></br>
+	<input id='fib2Find' type='text' pattern='[0-9]*'></br>
+	<button onclick='getFibonacci($("#fib2Find").val())'>Submit</button>
+	<div id='fibRes'></div>
+</body>
+</html>

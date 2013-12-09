@@ -1,0 +1,18 @@
+Mitigating SQL Injection
+
+The method that I would use to prevent SQL injections is to make use of prepared statements. This method allows the sql query to be prepared with so called 'markers' in place of the values that will be utilised by the query when accessing the database. This prevents SQL injection by ensuring that the statement is first sent to the database for parsing, along with the markers for the parameter values to be inserted to upon execution. This then prevents any unwanted strings from being interpeted as part of the actual query, thus mitigating SQL Injection.
+
+Mitigating Cross-Site Scripting
+
+In order to mitigate XSS on any website there needs to be a filter set up to prevent all kinds of attacks. This, in short, means sanitising any data that is submitted to the server via a form of any kind including search boxes, contact forms, signup forms etc.
+
+Unfortunately there are many kinds of XSS attacks, so it is near impossible to prevent all attacks. The most basic attack involves the user utilsing html tags in a particular form field and utilsing them to inject code into the target website. This particular form of XSS can fortunately be easily mitigated by preventing the use of the characters <, >, ", and '. These can all be sanitised and properly encoded on the server using the htmlspecialchars($input, ENT_QUOTES); method. The follwoing line could also be used to decode any encoded values utilised by a malicious user: 
+
+$input = str_replace(array(‘&amp;’,'&lt;’,'&gt;’), array(‘&amp;amp;’,'&amp;lt;’,'&amp;gt;’), $input);
+
+Finally, an attacker may use html characters, which can be prevented by the following rule:
+
+$input= preg_replace(‘/(&#*w+)[x00-x20]+;/u’, ‘$1;’, $data);
+$data = preg_replace(‘/(&#x*[0-9A-F]+);*/iu’, ‘$1;’, $input);
+
+Of course all of these methods combined won't stop all attacks, and probably won't prevent most. However it will still do a much better job than having no protection at all.
